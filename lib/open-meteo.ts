@@ -57,7 +57,8 @@ export async function getCurrentWeather(
   const data = (await res.json()) as OpenMeteoForecastJson
   const cw = data.current_weather
   if (
-    cw?.temperature === undefined ||
+    !cw ||
+    cw.temperature === undefined ||
     cw.weathercode === undefined ||
     cw.windspeed === undefined ||
     cw.time === undefined
