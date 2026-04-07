@@ -27,7 +27,7 @@ const nav = [
   { title: "Dashboard", href: "/", icon: LayoutDashboard },
   { title: "Inbox", href: "#", icon: Inbox },
   { title: "Analytics", href: "#", icon: BarChart3 },
-  { title: "Trello", href: "#", icon: KanbanSquare },
+  { title: "Trello", href: "/trello", icon: KanbanSquare },
 ]
 
 export function AppSidebar() {
