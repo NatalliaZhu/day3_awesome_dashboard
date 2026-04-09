@@ -2,27 +2,29 @@ import { WidgetFrame } from "@/components/dashboard/widget-frame"
 import {
   getCurrentWeather,
   weatherCodeLabel,
+  type CurrentWeather,
 } from "@/lib/open-meteo"
 
 /** Moscow — matches other app copy */
-const DEFAULT_LAT = 55.7558
-const DEFAULT_LON = 37.6173
+export const WEATHER_DEFAULT_LAT = 55.7558
+export const WEATHER_DEFAULT_LON = 37.6173
 
-export async function WeatherWidget() {
-  let weather: Awaited<ReturnType<typeof getCurrentWeather>> | null = null
-  let errorMessage: string | null = null
+export type WeatherWidgetContentProps = {
+  weather: CurrentWeather | null
+  errorMessage: string | null
+  className?: string
+}
 
-  try {
-    weather = await getCurrentWeather(DEFAULT_LAT, DEFAULT_LON)
-  } catch (e) {
-    errorMessage =
-      e instanceof Error ? e.message : "Could not load weather."
-  }
-
+export function WeatherWidgetContent({
+  weather,
+  errorMessage,
+  className,
+}: WeatherWidgetContentProps) {
   return (
     <WidgetFrame
       title="Weather"
       description="Open-Meteo forecast (current conditions, Moscow)."
+      className={className}
     >
       {errorMessage ? (
         <p className="text-sm text-muted-foreground">{errorMessage}</p>
@@ -67,5 +69,21 @@ export async function WeatherWidget() {
         <p className="text-sm text-muted-foreground">No data.</p>
       )}
     </WidgetFrame>
+  )
+}
+
+export async function WeatherWidget() {
+  let weather: CurrentWeather | null = null
+  let errorMessage: string | null = null
+
+  try {
+    weather = await getCurrentWeather(WEATHER_DEFAULT_LAT, WEATHER_DEFAULT_LON)
+  } catch (e) {
+    errorMessage =
+      e instanceof Error ? e.message : "Could not load weather."
+  }
+
+  return (
+    <WeatherWidgetContent weather={weather} errorMessage={errorMessage} />
   )
 }

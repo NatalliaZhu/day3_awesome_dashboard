@@ -18,7 +18,7 @@ export function WidgetFrame({
   return (
     <section
       className={cn(
-        "flex flex-col gap-3 rounded-lg border border-border bg-card p-4 text-card-foreground shadow-sm",
+        "flex min-h-0 flex-col gap-3 rounded-lg border border-border bg-card p-4 text-card-foreground shadow-sm",
         className
       )}
     >

@@ -11,7 +11,11 @@ function randomIntInclusive(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export function MockNumberWidget() {
+type MockNumberWidgetProps = {
+  className?: string
+}
+
+export function MockNumberWidget({ className }: MockNumberWidgetProps) {
   const [value, setValue] = useState<number | null>(null)
 
   const roll = useCallback(() => {
@@ -29,6 +33,7 @@ export function MockNumberWidget() {
     <WidgetFrame
       title="Mock number"
       description="A random integer generated on the client after mount."
+      className={className}
     >
       <div className="flex flex-col gap-4">
         <div className="flex min-h-12 items-center">

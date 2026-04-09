@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/sidebar"
 
 const nav = [
-  { title: "Dashboard", href: "/", icon: LayoutDashboard },
+  { title: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { title: "Inbox", href: "#", icon: Inbox },
   { title: "Analytics", href: "#", icon: BarChart3 },
   { title: "Trello", href: "/trello", icon: KanbanSquare },
@@ -37,7 +37,7 @@ export function AppSidebar() {
         <SidebarMenu className="w-full">
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="h-10">
-              <Link href="/">
+              <Link href="/dashboard">
                 <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
                   <LayoutDashboard className="size-3.5" />
                 </div>
